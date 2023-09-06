@@ -16,6 +16,10 @@ inputs:
   tag:
     description: “tag”
     required: true
+outputs:
+  new-image:
+    description: "new image"
+    value: ${{inputs.tag}}
 runs:
   using: "composite"
   steps:
@@ -31,3 +35,5 @@ runs:
           context: .
           push: true
           tags: ${{inputs.tag}}
+      - run: echo "new-image=${{inputs.tag}}" >> $GITHUB_OUTPUT
+        shell: bash
