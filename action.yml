@@ -20,6 +20,11 @@ inputs:
     description: “registry”
     required: false
     default: 'docker.io'
+  platforms:
+    description: “platforms”
+    required: false
+    default: 'linux/amd64,linux/arm64'
+
 outputs:
   new-image:
     description: "new image"
@@ -40,7 +45,7 @@ runs:
       with:
         context: .
         file: ${{inputs.file}}
-        platforms: linux/amd64,linux/arm64
+        platforms: ${{inputs.platforms}}
         #          platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{inputs.tag}}
